@@ -57,7 +57,7 @@ function generatePassword(lengthofpwd) {
     var pwdlength = lengthofpwd;
     console.log("check2" + pwdlength);
     var passwrd = '';
-    for (let i = 0; i <= pwdlength; i++) {
+    for (let i = 0; i < pwdlength; i++) {
         var character = Math.floor(Math.random() * randompwd.length);
         passwrd += randompwd.charAt(character);
     }
