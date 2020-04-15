@@ -1,70 +1,80 @@
-// // Assignment Code
-// var generateBtn = document.querySelector("#generate");
-// var randompwd = "ABCDEFGHIJKLNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_-+=[];:.?/0123456789";
-
-// // Write password to the #password input
-// function writePassword() {
-//     var password = generatePassword();
-//     var passwordText = document.querySelector("#display");
-
-//     passwordText.value = password;
-
-// }
-// function generatePassword() {
-//     var passwrd = '';
-//     for (let i = 0; i <= 10; i++) {
-//         var character = Math.floor(Math.random() * randompwd.length);
-//         passwrd += randompwd.charAt(character);
-//     }
-//     return passwrd;
-// }
-
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
-
 
 // Program Code
 //DOM Elements
 
 const passwordlength = document.getElementById('password-length');
 const submitbutton = document.getElementById('submit');
-var randompwd = "ABCDEFGHIJKLNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_-+=[];:.?/0123456789";
+const uppercasechar = document.getElementById('uppercase');
+const lowercasechar = document.getElementById('lowercase');
+const numbersinput = document.getElementById('numbers');
+const symbolsinput = document.getElementById('symbols');
+
+const randomFunc = {
+    lower: getRandomLower,
+    upper: getRandomUpper,
+    number: getRandomNumer,
+    symbol: getRandomSymbol
+
+};
+
+//  Event Listener
 
 submitbutton.addEventListener('click', () => {
-    const length = passwordlength.value;
-    writePassword(length);
 
-    //window.close();
-    //console.log(length);
+    const length = +passwordlength.value;
+    const islower = lowercasechar.checked;
+    const isupper = uppercasechar.checked;
+    const isnumber = numbersinput.checked;
+    const issymbol = symbolsinput.checked;
+
+    var password = generaterandompassword(islower, isupper, isnumber, issymbol, length);
+    var passwordText = document.querySelector("#display");
+    passwordText.value = password;
+
+
 }
 );
 
+//Writing the function for generaterandompassword
+//1. Initialize pwd var
+//2. Taking only checked ones
+//3. loop over the function for the length
+//4. adding the pwd to pwd var and return
 
-function writePassword(length) {
-    console.log("check1" + length);
 
-    var lengthofpwd = length;
-    var password = generatePassword(lengthofpwd);
-    console.log("check4" + password);
+function generaterandompassword(lower, upper, number, symbol, length) {
+    let generaterandompassword = '';
+    const numberofcounts = lower + upper + number + symbol;
 
-    var passwordText = document.querySelector("#display");
+    //console.log("number of counts :" + numberofcounts);
 
-    passwordText.value = password;
+    const arraycount = [{ lower }, { upper }, { number }, { symbol }].filter
+        (
+            item => Object.values(item)[0]   //filter function is used
+        );
 
-}
-function generatePassword(lengthofpwd) {
-    var pwdlength = lengthofpwd;
-    console.log("check2" + pwdlength);
-    var passwrd = '';
-    for (let i = 0; i < pwdlength; i++) {
-        var character = Math.floor(Math.random() * randompwd.length);
-        passwrd += randompwd.charAt(character);
+    //console.log("arraycount :", arraycount);
+
+
+    // write a code when no options are checked and pwd shd not be generated
+
+    if (numberofcounts === 0) {
+        return '';
     }
-    console.log("check3" + passwrd);
-    return passwrd;
-}
+    for (let i = 0; i < length; i += numberofcounts) {
+        arraycount.forEach(type => {
+            const functionname = Object.keys(type)[0];
 
+            //console.log('functionname:', functionname);
+
+            generaterandompassword += randomFunc[functionname]();
+
+        });
+    }
+    const finalpassword = generaterandompassword.slice(0, length);
+    return finalpassword;
+
+}
 
 
 function getRandomLower() {
