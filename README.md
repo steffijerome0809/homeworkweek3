@@ -4,7 +4,7 @@ The password generator page has and index.html and a script.js .On launching the
 
 # Getting Started
 
-Download the project from github repo to your local workspace. Since these are webpages there are no dependecieeis so index.html - web page can be launched by righ clicking. 
+Download the project from github repo to your local workspace. Since these are webpages there are no dependecieeis so index.html - web page can be launched by righ clicking. The uer is should enter a password that is atleast 8 characters and not more than 128 characters . Else the password would not be generated and the steps must be repeated again . The user should select atlest one character type, failing which an empty content will be displayed . The user can select minimum as well as max number of character types.
 
 # Prerequisite
 
