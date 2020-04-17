@@ -8,7 +8,7 @@ Download the project from github repo to your local workspace. Since these are w
 
 # Prerequisite
 
-MS Visual Studio code is required to make edits to software. 
+MS Visual Studio code is required to make edits to software. An amage of the site is given in assests folder.
 
 #URL
 
