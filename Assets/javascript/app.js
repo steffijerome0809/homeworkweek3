@@ -43,36 +43,46 @@ submitbutton.addEventListener('click', () => {
 
 
 function generaterandompassword(lower, upper, number, symbol, length) {
-    let generaterandompassword = '';
-    const numberofcounts = lower + upper + number + symbol;
 
-    //console.log("number of counts :" + numberofcounts);
+    //const finalpassword = " ";
+    if (length >= 8 && length <= 128) {
 
-    const arraycount = [{ lower }, { upper }, { number }, { symbol }].filter
-        (
-            item => Object.values(item)[0]   //filter function is used
-        );
+        console.log(length);
 
-    //console.log("arraycount :", arraycount);
+        let generaterandompassword = '';
+        const numberofcounts = lower + upper + number + symbol;
+
+        //console.log("number of counts :" + numberofcounts);
+
+        const arraycount = [{ lower }, { upper }, { number }, { symbol }].filter
+            (
+
+                item => Object.values(item)[0]   //filter function is used
+            );
+
+        //console.log("arraycount :", arraycount);
 
 
-    // write a code when no options are checked and pwd shd not be generated
+        // write a code when no options are checked and pwd shd not be generated
 
-    if (numberofcounts === 0) {
-        return '';
+        if (numberofcounts === 0) {
+            return '';
+        }
+        for (let i = 0; i < length; i += numberofcounts) {
+            arraycount.forEach(type => {
+                const functionname = Object.keys(type)[0];
+
+                // console.log('functionname:', functionname);
+
+                generaterandompassword += randomFunc[functionname]();
+
+            });
+        }
+        const finalpassword = generaterandompassword.slice(0, length);
+        return finalpassword;
+
     }
-    for (let i = 0; i < length; i += numberofcounts) {
-        arraycount.forEach(type => {
-            const functionname = Object.keys(type)[0];
-
-            //console.log('functionname:', functionname);
-
-            generaterandompassword += randomFunc[functionname]();
-
-        });
-    }
-    const finalpassword = generaterandompassword.slice(0, length);
-    return finalpassword;
+    else return '';
 
 }
 
