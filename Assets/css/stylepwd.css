@@ -97,16 +97,17 @@ border-bottom-width: 0px;
 #exampleModalLabel
 {
   color:green;
-  font-size: medium;
+  font-size: large;
   font-family: cursive;
 }
+
 
 #password-length
 {
   
   border-top-width: 0px;
   border-right-width: 0px;
-  border-bottom-width: 0px;
+  border-bottom-width: 2px;
   border-left-width: 0px;
   padding:0px;
     

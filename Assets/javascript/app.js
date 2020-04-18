@@ -8,6 +8,7 @@ const uppercasechar = document.getElementById('uppercase');
 const lowercasechar = document.getElementById('lowercase');
 const numbersinput = document.getElementById('numbers');
 const symbolsinput = document.getElementById('symbols');
+const generatebutton = document.getElementById('generate');
 
 const randomFunc = {
     lower: getRandomLower,
@@ -16,6 +17,17 @@ const randomFunc = {
     symbol: getRandomSymbol
 
 };
+// generatebutton
+
+generatebutton.addEventListener("click", function () {
+
+    passwordlength.value = " ";
+    lowercasechar.checked = false;
+    uppercasechar.checked = false;
+    numbersinput.checked = false;
+    symbolsinput.checked = false;
+
+});
 
 //  Event Listener
 
@@ -48,6 +60,7 @@ function generaterandompassword(lower, upper, number, symbol, length) {
     if (length >= 8 && length <= 128) {
 
         console.log(length);
+
 
         let generaterandompassword = '';
         const numberofcounts = lower + upper + number + symbol;
@@ -96,7 +109,7 @@ function getRandomUpper() {
 }
 
 function getRandomNumer() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 48);
+    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 }
 
 function getRandomSymbol() {
